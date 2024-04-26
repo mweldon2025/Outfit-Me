@@ -15,3 +15,4 @@ class OutfitRecommendationSystem:
             outfit = self.suggest_cold_outfit()
         else:
             outfit = "Weather information not available"
+        return outfit
