@@ -14,5 +14,9 @@ class OutfitRecommendationSystem:
         elif self.weather == "cold":
             outfit = self.suggest_cold_outfit()
         else:
-            outfit = "Weather information not available"
+            outfit = "Weather information unavailable"
         return outfit
+    def suggest_sunny_outfit(self):
+        tops = ["t-shirt", "tank top", "blouse"]
+        bottoms = ["shorts", "skirt", "light trousers"]
+        footwear = ["sandals", "sneakers", "flip flops"]
