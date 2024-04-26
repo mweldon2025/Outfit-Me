@@ -16,7 +16,7 @@ class OutfitRecommendationSystem:
     else:
         outfit = "Weather information unavailable"
             
-    return outfit
+return outfit
         
 def suggest_sunny_outfit(self):
         #Outfit suggestiona for warm weather
@@ -29,3 +29,5 @@ outfit = {
             "bottom": random.choice(bottoms),
             "footwear": random.choice(footwear),
             "accessories": self.preferences.get("accessories", "Sunglasses")
+ }
+        return outfit
