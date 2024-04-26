@@ -6,6 +6,7 @@ class OutfitRecommendationSystem:
         self.preferences = preferences
 
   def suggest_outfit(self):
+  #Weather-based outfit suggestions
     if self.weather == "sunny":
             outfit = self.suggest_sunny_outfit()
         elif self.weather == "rainy":
