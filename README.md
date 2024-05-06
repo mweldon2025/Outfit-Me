@@ -1,11 +1,12 @@
 # Outfit-Me
 
-class OutfitRecommendationSystem:
-    def __init__(self, weather, preferences):
-        self.weather = weather
-        self.preferences = preferences
+import random
 
- def pick_outfit(self):
+class OutfitPicker:
+    def __init__(self, weather):
+        self.weather = weather
+
+    def pick_outfit(self):
         if "sunny" in self.weather.lower():
             return random.choice(["Shorts and T-shirt", "Sundress", "Light blouse and jeans"])
         elif "rainy" in self.weather.lower():
@@ -26,7 +27,14 @@ def get_weather_from_user():
             print("Invalid weather condition. Please enter sunny, rainy, windy, or cold.")
 
 if __name__ == "__main__":
-    print("Welcome to the Outfit Picker App!")
+    print("Welcome to the OutfitME App!")
     print("I can help you choose an outfit based on the weather conditions.")
+    
+    weather = get_weather_from_user()
+    outfit_picker = OutfitPicker(weather)
+    outfit = outfit_picker.pick_outfit()
+    
+    print("\nRecommended outfit for {} weather: {}".format(weather, outfit))
+
     
   
