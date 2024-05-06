@@ -5,29 +5,28 @@ class OutfitRecommendationSystem:
         self.weather = weather
         self.preferences = preferences
 
-  def suggest_outfit(self):
-      #Weather-based outfit suggestions
-    if self.weather == "sunny":
-        outfit = self.suggest_sunny_outfit()
-    elif self.weather == "rainy":
-        outfit = self.suggest_rainy_outfit()
-    elif self.weather == "cold":
-        outfit = self.suggest_cold_outfit()
-    else:
-        outfit = "Weather information unavailable"
-            
-return outfit
-        
-def suggest_sunny_outfit(self):
-        #Outfit suggestiona for warm weather
-        tops = ["t-shirt", "tank top", "blouse"]
-        bottoms = ["shorts", "skirt", "light trousers"]
-        footwear = ["sandals", "sneakers", "flip flops"]
-        
-outfit = {
-            "top": random.choice(tops),
-            "bottom": random.choice(bottoms),
-            "footwear": random.choice(footwear),
-            "accessories": self.preferences.get("accessories", "Sunglasses")
- }
-        return outfit
+ def pick_outfit(self):
+        if "sunny" in self.weather.lower():
+            return random.choice(["Shorts and T-shirt", "Sundress", "Light blouse and jeans"])
+        elif "rainy" in self.weather.lower():
+            return random.choice(["Raincoat and boots", "Umbrella and waterproof jacket", "Jeans and rain boots"])
+        elif "windy" in self.weather.lower():
+            return random.choice(["Windbreaker jacket", "Long sleeve shirt and jeans", "Scarf and sweater"])
+        elif "cold" in self.weather.lower():
+            return random.choice(["Coat and scarf", "Sweater and jeans", "Thick jacket and gloves"])
+        else:
+            return "Sorry, I couldn't find suitable outfit recommendation for this weather."
+
+def get_weather_from_user():
+    while True:
+        weather = input("Enter the current weather condition (e.g., sunny, rainy, windy, cold): ")
+        if weather.lower() in ["sunny", "rainy", "windy", "cold"]:
+            return weather
+        else:
+            print("Invalid weather condition. Please enter sunny, rainy, windy, or cold.")
+
+if __name__ == "__main__":
+    print("Welcome to the Outfit Picker App!")
+    print("I can help you choose an outfit based on the weather conditions.")
+    
+  
