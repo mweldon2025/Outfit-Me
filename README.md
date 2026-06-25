@@ -1,40 +1,39 @@
-# Outfit-Me
+# OutfitME Application
 
-import random
+## Overview
 
-class OutfitPicker:
-    def __init__(self, weather):
-        self.weather = weather
+OutfitME is a Python application that recommends outfits based on weather conditions. The project was created to practice Python fundamentals, conditional logic, user input handling, and simple application design.
 
-    def pick_outfit(self):
-        if "sunny" in self.weather.lower():
-            return random.choice(["Shorts and T-shirt", "Sundress", "Light blouse and jeans"])
-        elif "rainy" in self.weather.lower():
-            return random.choice(["Raincoat and boots", "Umbrella and waterproof jacket", "Jeans and rain boots"])
-        elif "windy" in self.weather.lower():
-            return random.choice(["Windbreaker jacket", "Long sleeve shirt and jeans", "Scarf and sweater"])
-        elif "cold" in self.weather.lower():
-            return random.choice(["Coat and scarf", "Sweater and jeans", "Thick jacket and gloves"])
-        else:
-            return "Sorry, I couldn't find suitable outfit recommendation for this weather."
+Users enter the current weather condition, and the application returns an outfit recommendation based on that input.
 
-def get_weather_from_user():
-    while True:
-        weather = input("Enter the current weather condition (e.g., sunny, rainy, windy, cold): ")
-        if weather.lower() in ["sunny", "rainy", "windy", "cold"]:
-            return weather
-        else:
-            print("Invalid weather condition. Please enter sunny, rainy, windy, or cold.")
+## Features
 
-if __name__ == "__main__":
-    print("Welcome to the OutfitME App!")
-    print("I can help you choose an outfit based on the weather conditions.")
-    
-    weather = get_weather_from_user()
-    outfit_picker = OutfitPicker(weather)
-    outfit = outfit_picker.pick_outfit()
-    
-    print("\nRecommended outfit for {} weather: {}".format(weather, outfit))
+- Accepts user input for weather conditions
+- Recommends outfits for sunny, rainy, windy, and cold weather
+- Uses conditional logic to match weather with outfit options
+- Includes randomized outfit suggestions
+- Handles invalid weather input
 
-    
-  
+## Technologies Used
+
+- Python
+- GitHub
+
+## Skills Demonstrated
+
+- Python Programming
+- Conditional Logic
+- User Input Handling
+- Problem Solving
+- Application Design
+- Code Organization
+
+## How It Works
+
+The application asks the user to enter a weather condition. Based on the response, the program selects an outfit recommendation from a list of options.
+
+Example:
+
+```text
+Enter the current weather condition: rainy
+Recommended outfit for rainy weather: Raincoat and boots
