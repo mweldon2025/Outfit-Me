@@ -34,11 +34,7 @@ The application asks the user to enter a weather condition. Based on the respons
 
 Example:
 
-<<<<<<< HEAD
-Enter the current weather condition: rainy
-Recommended outfit for rainy weather: Raincoat and boots
-=======
 ```text
 Enter the current weather condition: rainy
 Recommended outfit for rainy weather: Raincoat and boots
->>>>>>> 07fc5e60627a774c1aaf22b7aaea7584178d20de
+```
