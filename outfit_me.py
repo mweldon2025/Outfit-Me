@@ -11,64 +11,129 @@ def get_temperature_category(temperature):
         return "cold"
 
 
-def recommend_base_outfit(category):
+def recommend_base_outfit(category, occasion):
     outfits = {
-        "hot": "T-shirt, shorts, and sneakers",
-        "warm": "Light jacket, jeans, and sneakers",
-        "cool": "Sweater, jeans, and boots",
-        "cold": "Heavy coat, scarf, gloves, and boots"
+        "hot": {
+            "casual": "T-shirt, shorts, and sneakers",
+            "work": "Light polo, chinos, and loafers",
+            "gym": "Athletic shirt, shorts, and trainers"
+        },
+        "warm": {
+            "casual": "Light jacket, jeans, and sneakers",
+            "work": "Button-down shirt, slacks, and loafers",
+            "gym": "Athletic shirt, joggers, and trainers"
+        },
+        "cool": {
+            "casual": "Sweater, jeans, and boots",
+            "work": "Sweater, dress pants, and boots",
+            "gym": "Long-sleeve athletic shirt, joggers, and trainers"
+        },
+        "cold": {
+            "casual": "Heavy coat, sweater, jeans, and boots",
+            "work": "Coat, sweater, dress pants, and boots",
+            "gym": "Thermal athletic wear, running jacket, and trainers"
+        }
     }
 
-    return outfits[category]
+    return outfits[category][occasion]
 
 
 def add_weather_items(outfit, weather):
     weather = weather.lower().strip()
 
-    if weather == "rain":
-        outfit += " + umbrella or rain jacket"
-    elif weather == "snow":
-        outfit += " + warm socks and waterproof boots"
-    elif weather == "windy":
-        outfit += " + windbreaker"
-    elif weather == "sunny":
-        outfit += " + sunglasses"
+    accessories = {
+        "sunny": ["Sunglasses"],
+        "rain": ["Umbrella", "Rain jacket"],
+        "snow": ["Scarf", "Gloves", "Waterproof boots"],
+        "windy": ["Windbreaker"]
+    }
+
+    if weather in accessories:
+        outfit += "\n\nAccessories:"
+        for item in accessories[weather]:
+            outfit += f"\n- {item}"
 
     return outfit
 
 
-def validate_temperature(user_input):
+def add_preference(outfit, preference):
+    preference = preference.lower().strip()
+
+    if preference == "warm":
+        outfit += "\n\nTip: Add an extra layer if you usually get cold."
+    elif preference == "cool":
+        outfit += "\n\nTip: Choose lighter clothing if you tend to get warm."
+
+    return outfit
+
+
+def validate_temperature(value):
     try:
-        temperature = int(user_input)
-        return temperature
+        return int(value)
     except ValueError:
         return None
 
 
-def recommend_outfit(temperature, weather):
+def recommend_outfit(temperature, weather, occasion, preference):
     category = get_temperature_category(temperature)
-    outfit = recommend_base_outfit(category)
-    final_outfit = add_weather_items(outfit, weather)
+    outfit = recommend_base_outfit(category, occasion)
+    outfit = add_weather_items(outfit, weather)
+    outfit = add_preference(outfit, preference)
 
-    return final_outfit
+    return outfit
 
 
 def main():
-    print("Welcome to OutFit-Me!")
-    print("Get an outfit recommendation based on temperature and weather.\n")
+    print("=" * 45)
+    print("        Welcome to OutFit-Me")
+    print("=" * 45)
 
-    temp_input = input("Enter today's temperature: ")
-    temperature = validate_temperature(temp_input)
+    while True:
+        temp_input = input("\nEnter today's temperature (°F): ")
+        temperature = validate_temperature(temp_input)
 
-    if temperature is None:
-        print("Invalid temperature. Please enter a number.")
-        return
+        if temperature is not None:
+            break
 
-    weather = input("Enter the weather condition (sunny, rain, snow, windy): ")
+        print("Please enter a valid number.")
 
-    recommendation = recommend_outfit(temperature, weather)
+    weather = input(
+        "Enter the weather (sunny, rain, snow, windy): "
+    ).lower().strip()
 
-    print("\nRecommended Outfit:")
+    while weather not in ["sunny", "rain", "snow", "windy"]:
+        weather = input(
+            "Please enter sunny, rain, snow, or windy: "
+        ).lower().strip()
+
+    occasion = input(
+        "Occasion (casual, work, gym): "
+    ).lower().strip()
+
+    while occasion not in ["casual", "work", "gym"]:
+        occasion = input(
+            "Please enter casual, work, or gym: "
+        ).lower().strip()
+
+    preference = input(
+        "Do you usually prefer warmer or cooler clothing? (warm/cool): "
+    ).lower().strip()
+
+    while preference not in ["warm", "cool"]:
+        preference = input(
+            "Please enter warm or cool: "
+        ).lower().strip()
+
+    recommendation = recommend_outfit(
+        temperature,
+        weather,
+        occasion,
+        preference
+    )
+
+    print("\n" + "=" * 45)
+    print("Recommended Outfit")
+    print("=" * 45)
     print(recommendation)
 
 
